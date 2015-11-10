@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2013, Marc Röttig, Stephan Aiche.
+/*
+ * Copyright (c) 2011, Marc Röttig.
  *
  * This file is part of GenericKnimeNodes.
  * 
@@ -16,29 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.genericworkflownodes.knime.nodes.io.outputfile;
+
+package com.genericworkflownodes.knime.nodes.io.externalsystemviewer;
 
 import org.knime.core.node.AbstractNodeView;
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
 
-import com.genericworkflownodes.knime.nodes.io.OutputFileNodeDialog;
-
 /**
- * <code>NodeFactory</code> for the "MimeFileExporter" Node.
+ * <code>NodeFactory</code> for the "MimeFileViewer" Node.
  * 
  * 
  * @author roettig
  */
-public class OutputFileNodeFactory extends NodeFactory<OutputFileNodeModel> {
+public class ExternalFileViewerNodeFactory extends
+        NodeFactory<ExternalFileViewerNodeModel> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public OutputFileNodeModel createNodeModel() {
-        return new OutputFileNodeModel();
+    public ExternalFileViewerNodeModel createNodeModel() {
+        return new ExternalFileViewerNodeModel();
     }
 
     /**
@@ -46,25 +46,16 @@ public class OutputFileNodeFactory extends NodeFactory<OutputFileNodeModel> {
      */
     @Override
     public int getNrNodeViews() {
-        return 3;
+        return 1;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public AbstractNodeView<OutputFileNodeModel> createAbstractNodeView(final int viewIndex,
-            final OutputFileNodeModel nodeModel) {
-        switch (viewIndex) {
-        case 0:
-            return new OutputFileNodeView(nodeModel);
-        case 1:
-            return new OpenFolderNodeView(nodeModel);
-        case 2:
-            return new ExternalViewerNodeView(nodeModel);
-        default:
-            return null;
-        }
+    public AbstractNodeView<ExternalFileViewerNodeModel> createAbstractNodeView(
+            final int viewIndex, final ExternalFileViewerNodeModel nodeModel) {
+        return new ExternalFileViewerNodeView(nodeModel);
     }
 
     /**
@@ -80,12 +71,12 @@ public class OutputFileNodeFactory extends NodeFactory<OutputFileNodeModel> {
      */
     @Override
     public NodeDialogPane createNodeDialogPane() {
-        return new OutputFileNodeDialog(OutputFileNodeModel.CFG_FILENAME);
+        return new ExternalFileViewerNodeDialog();
     }
 
     @Override
-    public NodeView<OutputFileNodeModel> createNodeView(int viewIndex,
-            OutputFileNodeModel nodeModel) {
+    public NodeView<ExternalFileViewerNodeModel> createNodeView(int viewIndex,
+            ExternalFileViewerNodeModel nodeModel) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -152,6 +152,13 @@ public final class BinaryManager {
         if (shippedBinary != null) {
             return shippedBinary;
         }
+        
+        // and another attempt using ".jar" as extension
+        shippedBinary = findFileInBundle(String
+                .format("%s.jar", executableName));
+        if (shippedBinary != null) {
+            return shippedBinary;
+        }
 
         // and another attempt using ".bat" as extension
         shippedBinary = findFileInBundle(String

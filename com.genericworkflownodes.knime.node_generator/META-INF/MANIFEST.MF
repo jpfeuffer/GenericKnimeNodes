@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Node_generator
+Bundle-SymbolicName: com.genericworkflownodes.knime.node_generator
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.genericworkflownodes.knime.node_generator.Activator
+Bundle-Vendor: GENERICWORKFLOWNODES
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.genericworkflownodes.knime.config
+Bundle-ActivationPolicy: lazy
+Import-Package: com.genericworkflownodes.knime.config

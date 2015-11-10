@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Feature
+Bundle-SymbolicName: com.genericworkflownodes.knime.feature
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.genericworkflownodes.knime.feature.Activator
+Bundle-Vendor: GENERICWORKFLOWNODES
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy

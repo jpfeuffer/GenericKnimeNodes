@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Update
+Bundle-SymbolicName: com.genericworkflownodes.knime.update
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.genericworkflownodes.knime.update.Activator
+Bundle-Vendor: GENERICWORKFLOWNODES
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy

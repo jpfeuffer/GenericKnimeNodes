@@ -328,6 +328,8 @@ public abstract class GenericKnimeNodeModel extends ExtToolOutputNodeModel {
         // - we do not xfer values to member variables
         // - we throw an exception if something is invalid
 
+        // settings object auf platte .. asu xml
+        // mnodconfig aus workflow
         for (String key : m_nodeConfig.getParameterKeys()) {
             Parameter<?> param = m_nodeConfig.getParameter(key);
             // FileParameters are not set by the UI

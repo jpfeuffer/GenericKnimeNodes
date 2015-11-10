@@ -17,13 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.genericworkflownodes.knime.nodes.io.viewer;
+package com.genericworkflownodes.knime.nodes.io.externalsystemviewer;
 
 import java.awt.Font;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import org.knime.core.node.ExternalApplicationNodeView;
 import org.knime.core.node.NodeView;
 
 import com.genericworkflownodes.knime.nodes.io.listimporter.ListMimeFileImporterNodeModel;
@@ -34,7 +35,7 @@ import com.genericworkflownodes.knime.nodes.io.listimporter.ListMimeFileImporter
  * 
  * @author roettig
  */
-public class MimeFileViewerNodeView extends NodeView<MimeFileViewerNodeModel> {
+public class ExternalFileViewerNodeView extends ExternalApplicationNodeView<ExternalFileViewerNodeModel> {
 
     /**
      * Creates a new view.
@@ -42,14 +43,8 @@ public class MimeFileViewerNodeView extends NodeView<MimeFileViewerNodeModel> {
      * @param nodeModel
      *            The model (class: {@link ListMimeFileImporterNodeModel})
      */
-    protected MimeFileViewerNodeView(final MimeFileViewerNodeModel nodeModel) {
+    protected ExternalFileViewerNodeView(final ExternalFileViewerNodeModel nodeModel) {
         super(nodeModel);
-
-        JTextArea text = new JTextArea(nodeModel.getContent(), 40, 80);
-        JScrollPane scrollpane = new JScrollPane(text);
-        text.setFont(new Font("Monospaced", Font.BOLD, 12));
-        setComponent(scrollpane);
-
     }
 
     /**
@@ -60,7 +55,7 @@ public class MimeFileViewerNodeView extends NodeView<MimeFileViewerNodeModel> {
 
         // TODO retrieve the new model from your nodemodel and
         // update the view.
-        MimeFileViewerNodeModel nodeModel = (MimeFileViewerNodeModel) getNodeModel();
+        ExternalFileViewerNodeModel nodeModel = (ExternalFileViewerNodeModel) getNodeModel();
         assert nodeModel != null;
 
         // be aware of a possibly not executed nodeModel! The data you retrieve
@@ -81,7 +76,7 @@ public class MimeFileViewerNodeView extends NodeView<MimeFileViewerNodeModel> {
      * {@inheritDoc}
      */
     @Override
-    protected void onOpen() {
+    protected void onOpen(String title) {
 
         // TODO things to do when opening the view
     }

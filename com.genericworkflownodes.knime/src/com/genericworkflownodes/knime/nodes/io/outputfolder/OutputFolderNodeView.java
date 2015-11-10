@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
+import org.knime.core.node.ExternalApplicationNodeView;
 import org.knime.core.node.NodeView;
 
 /**
@@ -12,7 +13,7 @@ import org.knime.core.node.NodeView;
  * 
  * @author The GKN Team
  */
-public class OutputFolderNodeView extends NodeView<OutputFolderNodeModel> {
+public class OutputFolderNodeView extends ExternalApplicationNodeView<OutputFolderNodeModel> {
 
     /**
      * Creates a new view.
@@ -36,9 +37,8 @@ public class OutputFolderNodeView extends NodeView<OutputFolderNodeModel> {
      * {@inheritDoc}
      */
     @Override
-    protected void onOpen() {
+    protected void onOpen(String title) {
         try {
-            setShowNODATALabel(true);
             openFolder();
         } catch (IOException e) {
             getLogger().error(
@@ -61,7 +61,6 @@ public class OutputFolderNodeView extends NodeView<OutputFolderNodeModel> {
     @Override
     protected void modelChanged() {
         try {
-            setShowNODATALabel(true);
             openFolder();
         } catch (IOException e) {
             getLogger().error(

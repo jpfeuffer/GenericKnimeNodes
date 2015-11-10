@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, Stephan Aiche.
+6 * Copyright (c) 2014, Stephan Aiche.
  *
  * This file is part of GenericKnimeNodes.
  * 

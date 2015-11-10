@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.genericworkflownodes.knime.nodes.io.viewer;
+package com.genericworkflownodes.knime.nodes.io.externalsystemviewer;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -38,12 +38,10 @@ import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.port.PortObject;
 import org.knime.core.node.port.PortObjectSpec;
 import org.knime.core.node.port.PortType;
 
-import com.genericworkflownodes.knime.nodes.io.outputfile.OutputFileNodeModel;
 import com.genericworkflownodes.util.Helper;
 
 /**
@@ -54,7 +52,7 @@ import com.genericworkflownodes.util.Helper;
  */
 
 /** TODO extends EXternalApplicationNodeView instead **/
-public class MimeFileViewerNodeModel extends NodeModel {
+public class ExternalFileViewerNodeModel extends NodeModel {
 
     private static final int BUFFER_SIZE = 2048;
 
@@ -62,17 +60,14 @@ public class MimeFileViewerNodeModel extends NodeModel {
      * 
      */
     public static final String NUM_LINES = "MAX_NUMBER_LINES";
-    public static final String CFG_FILENAME = "FILENAME";
 
-    private SettingsModelInteger max_num_lines = MimeFileViewerNodeDialog
+    private SettingsModelInteger max_num_lines = ExternalFileViewerNodeDialog
             .createIntModel();
 
     /**
      * The file content loaded from the file.
      */
     private String m_data;
-    private SettingsModelString m_filename = new SettingsModelString(
-            MimeFileViewerNodeModel.CFG_FILENAME, "");
 
     /**
      * Returns the content read from the mime file.
@@ -82,21 +77,11 @@ public class MimeFileViewerNodeModel extends NodeModel {
     public String getContent() {
         return m_data;
     }
-    
-
-    /**
-     * Returns the filename of the mime file.
-     * 
-     * @return The file content.
-     */
-    public SettingsModelString getFilename() {
-        return m_filename;
-    }
 
     /**
      * Constructor for the node model.
      */
-    protected MimeFileViewerNodeModel() {
+    protected ExternalFileViewerNodeModel() {
         super(new PortType[] { new PortType(IURIPortObject.class) },
                 new PortType[] {});
     }
@@ -197,6 +182,8 @@ public class MimeFileViewerNodeModel extends NodeModel {
 
         int maxLines = max_num_lines.getIntValue();
         m_data = Helper.readFileSummary(file, maxLines);
+
+        Desktop.getDesktop().open(file);
 
         return new PortObject[] {};
     }

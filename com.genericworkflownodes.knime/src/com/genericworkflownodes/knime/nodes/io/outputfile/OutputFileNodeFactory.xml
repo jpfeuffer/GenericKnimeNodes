@@ -20,5 +20,6 @@
     <views>
         <view index="0" name="View file summary">Shows a summary of the exported file. If the file contains more then 50 lines only the first 50 lines are shown.</view>
         <view index="1" name="Open Folder">Open the folder containing the output file.</view>
+        <view index="2" name="Open in Viewer">Open the file with a standard viewer.</view>
     </views>
 </knimeNode>

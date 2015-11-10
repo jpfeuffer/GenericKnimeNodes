@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, aiche.
+ * Copyright (c) 2011-2013, Marc Röttig, Stephan Aiche.
  *
  * This file is part of GenericKnimeNodes.
  * 
@@ -19,50 +19,34 @@
 package com.genericworkflownodes.knime.nodes.io.outputfile;
 
 import java.awt.Desktop;
+import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import org.knime.core.node.ExternalApplicationNodeView;
+import org.knime.core.node.NodeView;
+
+import com.genericworkflownodes.knime.nodes.io.listimporter.ListMimeFileImporterNodeModel;
 
 /**
- * @author aiche
+ * <code>NodeView</code> for the "MimeFileExporter" Node.
  * 
+ * 
+ * @author roettig
  */
-public class OpenFolderNodeView extends ExternalApplicationNodeView<OutputFileNodeModel> {
+public class ExternalViewerNodeView extends ExternalApplicationNodeView<OutputFileNodeModel> {
 
-    protected OpenFolderNodeView(OutputFileNodeModel nodeModel) {
+    /**
+     * Creates a new view.
+     * 
+     * @param nodeModel
+     *            The model (class: {@link ListMimeFileImporterNodeModel})
+     */
+    protected ExternalViewerNodeView(final OutputFileNodeModel nodeModel) {
         super(nodeModel);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void onClose() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void onOpen(String title) {
-        try {
-            openFolder();
-        } catch (IOException e) {
-            getLogger().error(
-                    "Could not open the folder for the selected output files.");
-            getLogger().error(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    public void openFolder() throws IOException {
-        String f_name = getNodeModel().m_filename.getStringValue();
-        if (!"".equals(f_name)) {
-            File f = new File(f_name);
-            if (f.getParentFile() != null)
-                Desktop.getDesktop().open(f.getParentFile());
-        }
     }
 
     /**
@@ -71,7 +55,8 @@ public class OpenFolderNodeView extends ExternalApplicationNodeView<OutputFileNo
     @Override
     protected void modelChanged() {
         try {
-            openFolder();
+            super.callCloseView();
+            openFile();
         } catch (IOException e) {
             getLogger().error(
                     "Could not open the folder for the selected output files.");
@@ -79,5 +64,38 @@ public class OpenFolderNodeView extends ExternalApplicationNodeView<OutputFileNo
             e.printStackTrace();
         }
     }
+    
+    public void openFile() throws IOException {
+        String f_name = getNodeModel().m_filename.getStringValue();
+        if (!"".equals(f_name)) {
+            File f = new File(f_name);
+            if (f.getParentFile() != null)
+                Desktop.getDesktop().open(f);
+        }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onClose() {
+    }
+    
+    
+    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onOpen(String title) {
+        try {
+            openFile();
+        } catch (IOException e) {
+            getLogger().error(
+                    "Could not open the folder for the selected output files.");
+            getLogger().error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

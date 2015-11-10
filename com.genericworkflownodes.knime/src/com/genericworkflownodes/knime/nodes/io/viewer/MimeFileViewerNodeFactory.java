@@ -54,7 +54,7 @@ public class MimeFileViewerNodeFactory extends
     @Override
     public NodeView<MimeFileViewerNodeModel> createNodeView(
             final int viewIndex, final MimeFileViewerNodeModel nodeModel) {
-        return new MimeFileViewerNodeView(nodeModel);
+        return new TextFileViewerNodeView(nodeModel);
     }
 
     /**

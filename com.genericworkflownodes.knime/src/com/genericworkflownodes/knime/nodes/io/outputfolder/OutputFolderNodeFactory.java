@@ -1,5 +1,6 @@
 package com.genericworkflownodes.knime.nodes.io.outputfolder;
 
+import org.knime.core.node.AbstractNodeView;
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
@@ -33,7 +34,7 @@ public class OutputFolderNodeFactory
      * {@inheritDoc}
      */
     @Override
-    public NodeView<OutputFolderNodeModel> createNodeView(final int viewIndex,
+    public AbstractNodeView<OutputFolderNodeModel> createAbstractNodeView(final int viewIndex,
             final OutputFolderNodeModel nodeModel) {
         return new OutputFolderNodeView(nodeModel);
     }
@@ -52,6 +53,13 @@ public class OutputFolderNodeFactory
     @Override
     public NodeDialogPane createNodeDialogPane() {
         return new OutputFolderNodeDialog();
+    }
+
+    @Override
+    public NodeView<OutputFolderNodeModel> createNodeView(int viewIndex,
+            OutputFolderNodeModel nodeModel) {
+        // unused because we return an ExternalViewer
+        return null;
     }
 
 }
